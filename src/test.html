@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@codait/max-vis"></script>
+    <style>
+        .canvas {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TensorFlow</h1>
+    <img id="myimage" src="../image1.jpg" alt="">
+    <script>
+        const prediction = [
+    {
+      bbox: [
+        265.6921148300171,
+        32.247418485581875,
+        300.97278356552124,
+        67.63276854157448
+      ],
+      label: 'surfboard',
+      score: 0.8422297239303589
+    },
+    {
+      bbox: [
+        207.72510766983032,
+        150.66242945194244,
+        215.90312719345093,
+        161.82034921646118
+      ],
+      label: 'surfboard',
+      score: 0.831159770488739
+    },
+    {
+      bbox: [
+        234.70847010612488,
+        224.19518262147903,
+        243.87254118919373,
+        236.74017852544785
+      ],
+      label: 'person',
+      score: 0.7749948501586914
+    },
+    {
+      bbox: [
+        49.78172779083252,
+        269.9477192759514,
+        74.50321018695831,
+        333.66632133722305
+      ],
+      label: 'person',
+      score: 0.7680066823959351
+    },
+    {
+      bbox: [
+        123.91228973865509,
+        107.93038165569305,
+        136.61812841892242,
+        123.4185978770256
+      ],
+      label: 'surfboard',
+      score: 0.6909494996070862
+    }
+    ]
+    console.log('test')
+    
+    // the source image used to get the prediction
+    const image = document.getElementById('myimage')
+    
+    // returns a Promise that resolves to a copy of the source image annotated with the prediction
+    maxvis.annotate(prediction, image)
+    .then(annotatedImageBlob => {
+    console.log(annotatedImageBlob)
+      // the argument passed is a Blob of a PNG image
+      let img = document.createElement('img')
+      img.src = URL.createObjectURL(annotatedImageBlob)
+      document.body.appendChild(img)
+    })
+    </script>
+</body>
+</html>
